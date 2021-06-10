@@ -1,0 +1,17 @@
+.white-text {
+    color: white;
+}
+
+mat-form-field {
+    margin-left: 10px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+
+.wrapper {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;   
+  }
+

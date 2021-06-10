@@ -1,0 +1,47 @@
+<h2> Sign up</h2>
+
+<form [formGroup]="signupForm" (ngSubmit)="trySignup()">
+  <div class="p-field">
+    <div *ngIf="usernameAlreadyExits">
+      <small id="username-help" class="p-error">Username is not available.</small>
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput [(ngModel)]="usernameData" formControlName="username" required>
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+  </div>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput [(ngModel)]="passwordData" type="password" formControlName="password" required>
+      <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field>
+  </p>
+  
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Repeat Password</mat-label>
+      <input matInput [(ngModel)]="repeatPasswordData" type="password" formControlName="repeatpassword" required>
+      <mat-icon matSuffix>enhanced_encryption</mat-icon>
+    </mat-form-field>
+  </p>
+  <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="emailData" type="email" formControlName="email" required>
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+    </p>
+    <div *ngIf="signupFailed">
+      <p-message severity="error" text="Signup failed.." styleClass="p-mr-2"></p-message>  
+    </div>
+
+  <button  mat-raised-button color="primary" type="submit" [disabled]="signinButtonDisabled" class="p-mt-2">
+    <div *ngIf="!tryingtosignup; else loading" class="p-m-1">Sign up</div>
+    <ng-template #loading>
+      <mat-spinner color="accent" [diameter]="30" class="p-m-1"></mat-spinner>
+    </ng-template>
+  </button>
+
+</form>

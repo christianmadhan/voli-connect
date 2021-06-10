@@ -1,0 +1,83 @@
+  <div class="p-grid p-m-2">
+    <div class="p-col-6 p-text-center">
+        <h1>Crash report</h1>
+        <p-chart type="pie" [data]="data"></p-chart>
+    </div>
+    <div class="p-col-6 p-text-center">
+        <h1>Usage report</h1>
+        <div class="card">
+            <h5>Basic</h5>
+            <p-chart type="line" [data]="basicData" [options]="basicOptions"></p-chart>
+        </div>        
+    </div>
+    <mat-divider></mat-divider>
+    <div class="p-col-6 p-text-center">
+    <h1>Error Logs</h1>
+    <mat-card class="error-card  p-mt-1" [ngStyle]="{backgroundColor:'var(--indigo-900)'}">
+        <mat-card-content>
+            <div class="p-d-flex p-jc-between">
+                <div>
+                    <h3>Voli Component</h3>
+                    <p>Teams</p>
+                </div>
+                <div>
+                    <h3>Maconomy system</h3>
+                    <p>Test</p>
+                </div>
+                <div>
+                    <h3>Error Description</h3>
+                    <p>something went wrong.....</p>
+                </div>
+                <div>
+                    <h3>Date</h3>
+                    <p>20/4/2021</p>
+                </div>
+            </div>
+        </mat-card-content>
+        </mat-card>    
+        <mat-card class="error-card  p-mt-1" [ngStyle]="{backgroundColor:'var(--indigo-900)'}">
+            <mat-card-content>
+                <div class="p-d-flex p-jc-between">
+                    <div>
+                        <h3>Voli Component</h3>
+                        <p>Teams</p>
+                    </div>
+                    <div>
+                        <h3>Maconomy system</h3>
+                        <p>Test</p>
+                    </div>
+                    <div>
+                        <h3>Error Description</h3>
+                        <p>something went wrong.....</p>
+                    </div>
+                    <div>
+                        <h3>Date</h3>
+                        <p>20/4/2021</p>
+                    </div>
+                </div>
+            </mat-card-content>
+            </mat-card>    
+            <mat-card class="error-card  p-mt-1" [ngStyle]="{backgroundColor:'var(--indigo-900)'}">
+                <mat-card-content>
+                    <div class="p-d-flex p-jc-between">
+                        <div>
+                            <h3>Voli Component</h3>
+                            <p>Teams</p>
+                        </div>
+                        <div>
+                            <h3>Maconomy system</h3>
+                            <p>Test</p>
+                        </div>
+                        <div>
+                            <h3>Error Description</h3>
+                            <p>something went wrong.....</p>
+                        </div>
+                        <div>
+                            <h3>Date</h3>
+                            <p>20/4/2021</p>
+                        </div>
+                    </div>
+                </mat-card-content>
+                </mat-card>       
+    </div>
+</div>

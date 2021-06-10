@@ -1,0 +1,33 @@
+.about-section {
+    padding: 50px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border-bottom: 40px solid #d8d8d8;
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+  }
+
+
+  .component-section {
+    padding: 50px;
+    text-align: center;
+    background-color:black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border-bottom: 40px solid #d8d8d8;
+  }
+
+  .example-card {
+    width: 400px;
+  }
+
+  mat-list {
+      display: flex;
+      gap: 10px;
+  }
+
+  img {
+    justify-content: center;  
+  }

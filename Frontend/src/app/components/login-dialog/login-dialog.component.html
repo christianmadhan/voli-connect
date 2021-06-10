@@ -1,0 +1,30 @@
+<h2> Login </h2>
+
+<form  [formGroup]="loginForm" (ngSubmit)="trylogin()">
+  <div class="form-group">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="John doe...." [(ngModel)]="usernameData" formControlName="username" required>
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+    </p>
+    
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="123mysecret..." [(ngModel)]="passwordData" formControlName="password" required>
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+    </p>
+    <div *ngIf="authFailed">
+      <p-message severity="error" text="Wrong credentials" styleClass="p-mr-2"></p-message>  
+  </div>
+    <button type="submit" mat-raised-button color="primary" [disabled]="loginButtonDisabled" class="p-mt-2">
+      <div *ngIf="!tryingtologin; else loading" class="p-m-1">Login</div>
+      <ng-template #loading>
+        <mat-spinner color="accent" [diameter]="30" class="p-m-1"></mat-spinner>
+      </ng-template>
+    </button>
+  </div>
+</form>

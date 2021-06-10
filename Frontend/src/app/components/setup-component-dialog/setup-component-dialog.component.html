@@ -1,0 +1,87 @@
+  <mat-vertical-stepper  #stepper>
+    <mat-step [stepControl]="firstFormGroup" label="Component Info">
+        <mat-card [ngStyle]="{backgroundColor:'var(--indigo-900)'}">
+            <mat-card>
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-6 p-md-6">
+                        <label>Compoonent Information</label>
+                        <div class="card">
+                            <h1>Teams</h1>
+                                <p>Something about teams</p>
+                                <p>Which problems does this integration solve</p>
+                                <p>Set up explained in steps: </p>
+                                <ol>
+                                    <li>Select Maconomy Systems</li>
+                                    <li>Decide which maconomy fields needs mapping</li>
+                                    <li>Credit card information</li>
+                                    <li>Done, Integration success!</li>
+
+                                </ol>
+                            </div>
+                    </div>
+                </div>
+            </mat-card>
+        </mat-card>
+        </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Maconomy Setup">
+        <mat-card [ngStyle]="{backgroundColor:'var(--indigo-900)'}">
+            <h1 class="white-text">Please make sure that the information that you provide is correct. You will be able to change it, however, services may report errors if your provided information does not match information within your Maconomy System</h1>
+            <mat-card>
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-6 p-md-6">
+                        <label for="field1">Your field</label>
+                        <input id="field1" type="text" pInputText> 
+                    </div>
+                    <div class="p-field p-col-6 p-md-6">
+                        <label for="voliField1">ContactCompanies</label>
+                        <input id="voliField1" type="text" pInputText placeholder="name1" disabled> 
+                    </div>
+                    <div class="p-field p-col-6 p-md-6">
+                        <label for="field1">Your field</label>
+                        <input id="field1" type="text" pInputText> 
+                    </div>
+                    <div class="p-field p-col-6 p-md-6">
+                        <label for="voliField1">Opportunity</label>
+                        <input id="voliField1" type="text" pInputText placeholder="name5" disabled> 
+                    </div>
+                    <div class="p-field p-col-6 p-md-6">
+                        <label for="field1">Your field</label>
+                        <input id="field1" type="text" pInputText> 
+                    </div>
+                    <div class="p-field p-col-6 p-md-6">
+                        <label for="voliField1">Event</label>
+                        <input id="voliField1" type="text" pInputText placeholder="text5" disabled> 
+                    </div>
+                </div>
+            </mat-card>
+        </mat-card>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Credit Card">
+        <mat-card [ngStyle]="{backgroundColor:'var(--indigo-900)'}">
+            <mat-card>
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-6 p-md-6">
+                        <label for="username">Card number</label>
+                        <input id="username" type="text" pInputText placeholder="4520-2345****************" disabled> 
+                    </div>
+                    <div class="p-field p-col-6 p-md-6">
+                        <label for="Password">Expire Date</label>
+                        <input id="Password" type="date" pInputText placeholder="15/5/2021" disabled> 
+                    </div>
+                    <div class="p-field p-col-6 p-md-6">
+                        <label for="cvc">CVC/CVV2</label>
+                        <input id="cvc" type="number" pInputText placeholder="123" disabled> 
+                    </div>
+                </div>
+            </mat-card>
+        </mat-card>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>

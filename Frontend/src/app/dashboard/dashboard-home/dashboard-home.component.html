@@ -1,0 +1,50 @@
+
+<mat-sidenav-container  disableClose="true" fullscreen>
+    <mat-sidenav #sidenav mode="over" position="start" class="mat-card-bg">
+        <mat-icon class="closeIcon" (click)="sidenav.toggle()">close</mat-icon>
+        <a [routerLink]="['home']">
+          <mat-card  [routerLinkActive]="['mat-card-bg', 'mat-card-links']" [routerLinkActiveOptions]="{ exact: true }" class="p-m-1">
+            <mat-icon class="sidenavIcon" color="accent">home</mat-icon>
+            <mat-card-content>
+              Home
+            </mat-card-content>
+          </mat-card>
+        </a>
+        <mat-divider></mat-divider>
+        <a [routerLink]="['profile']">
+          <mat-card  [routerLinkActive]="['mat-card-bg', 'mat-card-links']" [routerLinkActiveOptions]="{ exact: true }" class="p-m-1">
+            <mat-icon class="sidenavIcon" color="accent">person</mat-icon>
+            <mat-card-content>
+              Profile
+            </mat-card-content>
+          </mat-card>
+        </a>
+        <mat-divider></mat-divider>
+        <a [routerLink]="['components']" >
+          <mat-card [routerLinkActive]="['mat-card-bg', 'mat-card-links']" [routerLinkActiveOptions]="{ exact: true }" class="p-m-1">
+            <mat-icon class="sidenavIcon" color="accent">electrical_services</mat-icon>
+            <mat-card-content>
+              Components
+            </mat-card-content>
+          </mat-card>
+        </a>
+        <a (click)="signout()" >
+          <mat-card class="mat-logout-link" class="p-m-1">
+            <mat-icon class="sidenavIcon" color="error">power_settings_new</mat-icon>
+            <mat-card-content>
+              Logout
+            </mat-card-content>
+          </mat-card>
+        </a>     
+    </mat-sidenav>
+  
+    <mat-sidenav-content >
+        <mat-toolbar color="primary">
+          <button mat-icon-button class="toolbar" (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span style="text-align: center; width: 100%;">{{routeName}}</span>
+        </mat-toolbar>
+      <router-outlet ></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

@@ -1,0 +1,85 @@
+<div class="p-grid p-m-1">
+ 
+    <div class="p-col-12  scroll-list" *ngIf="myComponents.length > 0">
+        <h1>My Components</h1>
+        <div class="p-d-flex">
+            
+            <p-card *ngFor="let component of myComponents; let i = index" header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}" styleClass="p-card-shadow p-m-2">
+                <ng-template pTemplate="header">
+                    <img alt="Card" [src]="component.ImgUrl">
+                </ng-template>
+                <p>{{component.Description}}</p>
+                <ng-template pTemplate="footer">
+                    <p-button label="Save" icon="pi pi-check"></p-button>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+    <div class="p-col-12 p-sm-12 p-md-8 p-md-offset-2">
+        <div class="card" [ngStyle]="{backgroundColor:'var(--indigo-900)'}"  *ngIf="components else loadingcomponents">
+        <p-dataView #dv [value]="components" [paginator]="true" [rows]="9" filterBy="Name"
+                layout="list">
+                <ng-template pTemplate="header">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+                        <!-- <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price" (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown> -->
+                        <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                            <i class="pi pi-search"></i>
+                            <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                        </span>
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    </div>
+                </ng-template>
+                <ng-template let-component pTemplate="listItem">
+                    <div class="p-col-12">           
+                        <div class="product-list-item">
+                            <img [src]="component.ImgUrl"/>
+                            <div class="product-list-detail">
+                                <div class="product-name">{{component.Name}}</div>
+                                <div class="product-description">{{component.Description}}</div>
+                                <!-- <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating> -->
+                                <!-- <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{product.category}}</span> -->
+                            </div>
+                            <div class="product-list-action" *ngIf="component.Active !== false else comingsoon">
+                                <span class="product-price">{{component.CostPrice}} DKK</span>
+                                <h5>{{component.UsagePrice}} DKK/MIN</h5>
+                                <p-button icon="pi pi-pencil" (click)="openSetupComponent(component.Name)" label="Set up"></p-button>
+                            </div>
+                            <ng-template  class="product-list-action" #comingsoon>
+                                <i class="pi pi-bell"></i>
+                                <h5>Coming soon!</h5>
+                            </ng-template>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template let-component pTemplate="gridItem">
+                    <div class="p-col-12 p-md-4 p-sm-12">
+                        <div class="product-grid-item card p-shadow-24" [ngClass]="{'op':component.Active === false}">
+                            <div class="product-grid-item-top">
+                                <div>
+                                    <i class="pi pi-tag product-category-icon"></i>
+                                    <span class="product-category">{{component.Name}}</span>
+                                </div>
+                                <!-- <span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span> -->
+                            </div>
+                            <div class="product-grid-item-content">
+                                <img [src]="component.ImgUrl" height="120"/>
+                                <div class="product-name">{{component.Name}}</div>
+                                <div class="product-description">{{component.Description}}</div>
+                                <!-- <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating> -->
+                            </div>
+                            <div class="product-grid-item-bottom">
+                                 <span class="product-price">{{component.CostPrice}} DKK</span>
+                               <!--  <p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button> -->
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
+        </div>
+    </div>
+    <ng-template #loadingcomponents>
+        <mat-spinner  color="accent" [diameter]="50" class="p-m-1"></mat-spinner>
+        <h5>loading...</h5>
+    </ng-template>
+
+</div>

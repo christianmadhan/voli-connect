@@ -1,0 +1,88 @@
+<mat-vertical-stepper linear="true" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your maconomy information</ng-template>
+            <div>
+                <div class="p-col-12">
+                    <mat-form-field>
+                        <mat-label>Root Url</mat-label>
+                        <input matInput placeholder="https://deltek.maconomy.url.com" formControlName="rooturl">
+                      </mat-form-field>
+                </div>
+                <div class="p-col-12">
+                    <mat-form-field>
+                        <mat-label>Username</mat-label>
+                        <input matInput type="text" formControlName="username" >
+                      </mat-form-field>
+                </div>
+                <div class="p-col-12">
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input matInput type="text" formControlName="password" >
+                      </mat-form-field>
+                </div>
+                <div class="p-col-12">
+                    <mat-form-field>
+                        <mat-label>Name:</mat-label>
+                        <input matInput type="text" placeholder="E.g. Test, Prod etc." formControlName="name" >
+                      </mat-form-field>
+                </div>
+                <div class="p-col-12">
+                  <mat-form-field>
+                      <mat-label>Description:</mat-label>
+                      <input matInput type="text" placeholder="E.g.: only used in prod." formControlName="description" >
+                    </mat-form-field>
+              </div>
+            </div>
+        <div>
+          <button mat-button (click)="goForward(stepper)">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" class="p-text-center" #validatestep>
+      <form [formGroup]="secondFormGroup" >
+        <ng-template matStepLabel>Validate</ng-template>
+        <div *ngIf="validated else loadingvalidate">
+          <ng-container *ngIf="maconomySuccess">
+            <mat-icon class="success-icon">check</mat-icon>
+            Success!
+          </ng-container>
+          <ng-container *ngIf="maconomyError">
+            <mat-icon color="error">report</mat-icon>
+            <h4>             Could not authenticate your maconomy system.
+              You can either continue or go back and edit.</h4>
+          </ng-container>
+        </div>
+        <ng-template #loadingvalidate>
+          <mat-spinner  color="accent" [diameter]="50" class="p-m-1"></mat-spinner>
+          <h5>Validating your maconomy information..</h5>
+        </ng-template>
+        <mat-form-field hidden="true">
+          <input matInput formControlName="secondCtrl"
+                hidden >
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext (click)="goForward(stepper)">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <ng-template matStepLabel>Validate</ng-template>
+      <div *ngIf="uploadingMaconomyInfo else uploading">
+        <ng-container *ngIf="uploadingSuccess">
+          <mat-icon class="success-icon">check</mat-icon>
+          Success!
+        </ng-container>
+        <ng-container *ngIf="uploadingError">
+          <mat-icon color="error">report</mat-icon>
+          <h4>Something went wrong..</h4>
+        </ng-container>
+      </div>
+      <ng-template #uploading>
+        <mat-spinner  color="accent" [diameter]="50" class="p-m-1"></mat-spinner>
+        <h5>Uploading...</h5>
+      </ng-template>
+    </mat-step>
+  </mat-vertical-stepper>

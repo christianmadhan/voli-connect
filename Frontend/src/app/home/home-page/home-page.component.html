@@ -1,0 +1,28 @@
+<home-navbar></home-navbar>
+<div class="about-section"  id="about">
+    <h1>What is Voli Connect</h1>
+    <p>Voli Connect is a component library that can easily integrate and connect components to your Maconomy systems.</p>
+    <p>Follow the simple step by step guide, and have one or more of our components integrate with your Maconomy workflow within seconds.</p>
+  </div>
+
+  <div class="component-section" id="component">
+    <h1>Components</h1>
+    <mat-list>
+        <mat-card class="example-card" *ngFor="let component of componentList">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>{{component.Name}}</mat-card-title>
+              <mat-card-subtitle>{{component.ShortDescription}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+
+              <img mat-card-image [src]="component.ImgUrl" height="150">
+              <p>
+                    {{component.Description}}
+              </p>
+            </mat-card-content>
+          </mat-card>
+       </mat-list>
+  </div>
+
+<home-footer></home-footer>

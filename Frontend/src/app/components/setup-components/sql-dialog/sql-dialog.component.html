@@ -1,0 +1,144 @@
+<div *ngIf="checkMacSystems else MacAvailable" class="p-grid p-jc-center">
+    <div *ngIf="loading" class="p-col-12 p-text-center">
+        <div class="wrapper">
+            <mat-spinner  color="accent" [diameter]="50" class="p-m-1"></mat-spinner>
+        </div>
+        <h5>loading...</h5>
+    </div>
+    <div  *ngIf="noMaconomy">
+        <h3>You need to add a Maconomy system before you can proceed</h3>
+        <h3>Go to "Profile" and add one or more of your Maconomy Systems</h3>
+        <button mat-raised-button color="accent" (click)="goToProfile()">
+            <mat-icon>person</mat-icon>
+            Go to Profile 
+        </button>
+    </div>
+</div>
+
+<ng-template #MacAvailable>
+    <mat-vertical-stepper linear="true" >
+        <mat-step label="Component Info">
+            <mat-card [ngStyle]="{backgroundColor:'var(--indigo-900)'}">
+                <mat-card>
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field p-col-6 p-md-6">
+                            <div class="card">
+                                <h1>SQL</h1>
+                                    <p>Easily transfer your Maconomy Data to your SQL cloud backend</p>
+                                    <p></p>
+                                    <p>Set up explained in steps: </p>
+                                    <ol>
+                                        <li>Select Maconomy System</li>
+                                        <li>Insert your SQL credentials</li>
+                                        <li>Select time, date, intervals when the service should run</li>
+                                        <li>Done, Component setup success!</li>
+                                    </ol>
+                                </div>
+                        </div>
+                    </div>
+                    <button mat-raised-button color="primary" matStepperNext>Next</button>
+                </mat-card>
+            </mat-card>
+            </mat-step>
+        <mat-step label="Maconomy Systems">
+            <mat-card [ngStyle]="{backgroundColor:'var(--indigo-900)'}" >
+                <h1 class="white-text"></h1>
+                <mat-card>
+                    <div class="p-col-12">
+                        <h4>Select one of your Maconomy Systems</h4>
+                        <mat-form-field *ngIf="customerMaconomy else loadingMaconomySystems">
+                            <mat-select>
+                              <mat-option *ngFor="let maconomy of customerMaconomy" [value]="maconomy.Name">
+                                {{maconomy.Name}}
+                              </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    
+                    <!-- SKELETON LOADER MACONOMY SYSTEM. -->
+                    <ng-template #loadingMaconomySystems>
+                        <mat-card [ngStyle]="{backgroundColor:'var(--indigo-900)'}" class="p-mt-2">
+                            <div class="example-button-container">
+                                <button mat-mini-fab color="accent" disabled>
+                                  <mat-icon>add</mat-icon>
+                                </button>
+                              </div>
+                            <mat-card-header>
+                                
+                                <h1 [ngStyle]="{color:'var(--surface-50)'}">Maconomy Systems</h1>
+                            </mat-card-header>
+                            <div class="p-col-12">
+                                <p-card >
+                                </p-card>
+                                
+                            </div>
+                            
+                        </mat-card>
+                    </ng-template>
+                    </div>
+                <button mat-raised-button color="primary" matStepperNext>Next</button>
+                </mat-card>
+            </mat-card>
+        </mat-step>
+        <mat-step  label="SQL Setup">
+            <mat-card [ngStyle]="{backgroundColor:'var(--indigo-900)'}">
+                <h2 class="white-text">Please make sure that the information that you provide is correct. You will be able to change it, however, services may report errors if your provided information is not correct</h2>
+                <mat-card>
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col-6 p-md-12">
+                            <label for="field1">Connection String</label>
+                            <input id="field1" type="text" pInputText> 
+                        </div>
+                        <button mat-raised-button color="primary" matStepperNext>Next</button>
+                    </div>
+                </mat-card>
+            </mat-card>
+        </mat-step>
+        <mat-step  label="Scheduler">
+            <mat-card [ngStyle]="{backgroundColor:'var(--indigo-900)'}">
+                <mat-card>
+                    <h4>Select Invoice: (How you wants to be Bill)</h4>
+                    <h4>Run Every: (Intervals the service should run)</h4>
+                    <div class=" p-formgrid p-grid">
+                        <div class="p-field p-col-12 p-md-12">
+                            <label for="username">Invoice </label>
+                            <mat-form-field >
+                                <mat-select name="periods">
+                                  <mat-option *ngFor="let period of periods" [value]="period.value">
+                                    {{period.viewValue}}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field> 
+                        </div>
+                        <div class="p-field p-col-12 p-md-12">
+                            <label for="Password">Run Every</label>
+                            <mat-form-field>
+                                <mat-select name="runEvery">
+                                  <mat-option *ngFor="let interval of runEvery" [value]="interval.interval">
+                                    {{interval.interval}}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+                        <div class="p-field p-col-12 p-md-12">
+                            <label for="Datepickerlabel">StartDate</label>
+                                <mat-form-field appearance="outline" (click)="datepicker.open()">
+                                  <input matInput [matDatepicker]="datepicker" disabled>
+                                  <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                                  <mat-datepicker #datepicker disabled="false"></mat-datepicker>
+                                </mat-form-field>
+                        </div>
+                    </div>
+                    <button mat-raised-button color="primary" matStepperNext>Next</button>
+                </mat-card>
+
+            </mat-card>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <h3>Thats it! Press "Done" to finish the setup.</h3>
+          <div>
+            <button mat-raised-button color="accent" (click)="setupSQL()">Done</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+</ng-template>

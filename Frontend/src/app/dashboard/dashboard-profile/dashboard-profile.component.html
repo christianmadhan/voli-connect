@@ -1,0 +1,130 @@
+<div class="p-grid p-m-1">
+    <div class="p-col-12 p-md-6 p-sm-12">
+
+        <!-- User information -->
+        <mat-card [ngStyle]="{backgroundColor:'var(--indigo-900)'}" *ngIf="data else loadingUserInfo">
+            <mat-card-header>
+                <h1 [ngStyle]="{color:'var(--surface-50)'}">User information</h1>
+            </mat-card-header>
+                    <mat-card>
+                        <div class="p-fluid p-formgrid p-grid">
+                            <div class="p-field p-col-6 p-md-6">
+                                <label for="username">Username</label>
+                                <input id="username" type="text" pInputText value="{{ data.Username }}" disabled> 
+                            </div>
+                            <div class="p-field p-col-6 p-md-6">
+                                <label for="Password">Email</label>
+                                <input id="Password" type="text" pInputText value="{{ data.Email }}" disabled> 
+                            </div>
+                            <div class="p-field p-col-6 p-md-6">
+                                <button mat-flat-button color="primary" (click)="this.ngOnInit()">
+                                    Reset password
+                                  </button>
+                            </div>
+                        </div>
+                    </mat-card>
+                    <mat-card class="p-mt-1" *ngIf="data.CompanyName !== null">
+                        <div class="p-fluid p-formgrid p-grid">
+                            <div class="p-field p-col-12 p-md-12">
+                                <label for="company">Company</label>
+                                <input id="company" type="text" pInputText value="{{ data.CompanyName }}"  disabled> 
+                            </div>
+                            <div class="p-field p-col-12 p-md-12">
+                                <label for="description">Description</label>
+                                <input id="description" type="text" pInputText value="{{ data.CompanyDescription }}" disabled> 
+                            </div>
+                        </div>
+                    </mat-card>
+        </mat-card>         
+            <ng-template #loadingUserInfo>
+                <mat-card [ngStyle]="{backgroundColor:'var(--indigo-900)'}">
+                    <mat-card-header>
+                        <h1 [ngStyle]="{color:'var(--surface-50)'}">User information</h1>
+                    </mat-card-header>
+                    <mat-card>
+                        <div class="p-fluid p-formgrid p-grid">
+                            <div class="p-field p-col-6 p-md-6">
+                                <label for="username">Username</label>
+                                <p-skeleton  height="3rem" styleClass="p-mb-2"></p-skeleton>
+                            </div>
+                            <div class="p-field p-col-6 p-md-6">
+                                <label for="Password">Email</label>
+                                <p-skeleton  height="3rem" styleClass="p-mb-2"></p-skeleton>
+                            </div>
+                            <div class="p-field p-col-6 p-md-6">
+                                <p-skeleton  height="2rem" styleClass="p-mb-2"></p-skeleton>
+                            </div>
+                        </div>
+                    </mat-card>
+                </mat-card>
+            </ng-template>
+        
+        <!-- END -->
+    </div>
+    
+    <div class="p-col-12 p-md-6 p-sm-12">
+            <mat-card [ngStyle]="{backgroundColor:'var(--indigo-900)'}" *ngIf="maconomysystems else loadingMaconomySystems">
+                <div class="example-button-container">
+                    <button mat-mini-fab color="accent" (click)="openAddMaconomyDialog()">
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </div>
+                <mat-card-header>
+                    
+                    <h1 [ngStyle]="{color:'var(--surface-50)'}">Maconomy Systems</h1>
+                </mat-card-header>
+                <div class="p-col-12" *ngFor="let maconomy of maconomysystems">
+                    <p-card >
+                        <h2>{{maconomy.Name}}</h2>
+                
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Information
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <div class="p-col-12">
+                        <div class="p-fluid p-formgrid p-gri">
+                            <div class="p-field p-col-12 p-md-12">
+                                <label for="maconomyroot">Root</label>
+                                <input id="maconomyroot" type="text" pInputText value="{{maconomy.RootUrl}}" disabled> 
+                            </div>
+                            <div class="p-field p-col-12 p-md-12">
+                                <label for="maconomyusername">Username</label>
+                                <input id="maconomyusername" type="text" pInputText value="{{maconomy.Username}}" disabled> 
+                            </div>
+                            <div class="p-field p-col-12 p-md-12">
+                                <label for="maconomydescription">Description</label>
+                                <input id="maconomydescription" type="text" pInputText value="{{maconomy.Description}}" disabled> 
+                            </div>
+                        </div>
+                      </div>
+                    </mat-expansion-panel>
+                    
+                        <ng-template pTemplate="footer"></ng-template>
+                    </p-card>
+                    
+                </div>
+            </mat-card>
+            <!-- SKELETON LOADER MACONOMY SYSTEM. -->
+            <ng-template #loadingMaconomySystems>
+                <mat-card [ngStyle]="{backgroundColor:'var(--indigo-900)'}" class="p-mt-2">
+                    <div class="example-button-container">
+                        <button mat-mini-fab color="accent" disabled>
+                          <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+                    <mat-card-header>
+                        
+                        <h1 [ngStyle]="{color:'var(--surface-50)'}">Maconomy Systems</h1>
+                    </mat-card-header>
+                    <div class="p-col-12">
+                        <p-card >
+                        </p-card>
+                        
+                    </div>
+                </mat-card>
+            </ng-template>
+
+    </div>
+</div>

@@ -1,0 +1,53 @@
+.items-side-nav {
+width: 100%;
+}
+
+
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .closeIcon {
+margin: 10px;
+  }
+
+ /* width */
+ ::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 7px 7px 3px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #673AB7;; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #673AB7;
+}
+
+.mat-card-bg {
+  background-color: #673ab7;
+  color: white;
+}
+
+.mat-card-links {
+  color: white;
+}
+
+.mat-logout-link {
+  color: black
+}
+
+.mat-card-links:hover {
+  background-color: #673ab7;
+  color: white;
+}
